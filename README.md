@@ -26,9 +26,8 @@ sudo apt install python3-sdformat13 ros-humble-ros-gzgarden ros-humble-xacro
 Once you have set up your development environment, the following steps will download and build VRX:
 1. Create a colcon workspace and clone the vrx repository
 ```
-mkdir -p ~/vrx_ws/src
-cd ~/vrx_ws/src
-git clone https://github.com/osrf/vrx.git
+git clone https://github.com/duy12i1i7/USV.git
+mv USV/vrx_ws ~/
 ```
 2. Source your ROS 2 installation.
 ```
