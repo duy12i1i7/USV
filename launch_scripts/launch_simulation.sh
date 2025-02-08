@@ -153,7 +153,7 @@ else
 fi
 
 ### ROS 2 Setup ###
-cd $SWARMZ4_PATH/ros2_ws || { echo "ROS 2 workspace directory not found!"; exit 1; }
+cd $SWARMZ4_PATH/vrx_ws || { echo "ROS 2 workspace directory not found!"; exit 1; }
 source install/setup.bash
 
 # ROS 2 Bridges and Launch Files
