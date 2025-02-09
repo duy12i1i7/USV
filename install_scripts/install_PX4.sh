@@ -38,7 +38,7 @@ install_px4() {
     echo "Installing PX4-Autopilot in $SWARMZ4_PATH" 
 
     cd $SWARMZ4_PATH
-    git clone --recursive https://github.com/PX4/PX4-Autopilot.git
+    git clone --branch v1.15.3 --depth 1  --recurse-submodules https://github.com/PX4/PX4-Autopilot.git
     cd $SWARMZ4_PATH/PX4-Autopilot || { echo "Failed to access PX4 directory"; exit 1; }
     bash ./Tools/setup/ubuntu.sh
     make px4_sitl
