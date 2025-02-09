@@ -22,7 +22,7 @@ install_ros2() {
 
     sudo apt install -y software-properties-common
     sudo add-apt-repository universe
-    sudo apt update && sudo apt install -y curl
+    sudo apt update && sudo apt install -y curl python3-pip
 
     sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
