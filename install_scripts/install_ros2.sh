@@ -35,7 +35,7 @@ install_ros2() {
 
     # Additional Python dependencies
     pip install --user -U empy==3.3.4 pyros-genmsg setuptools==58.2
-
+    sudo apt install python3-sdformat13 ros-humble-ros-gzgarden ros-humble-xacro
     echo "ROS 2 Humble installation completed."
 }
 
