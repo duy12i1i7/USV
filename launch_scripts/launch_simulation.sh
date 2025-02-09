@@ -143,12 +143,12 @@ cd $SWARMZ4_PATH/launch_scripts || { echo "launch_scripts directory not found!";
 if [ "$HEADLESS" -ne 1 ]; then
   echo "HEADLESS mode is disabled. Launching Gazebo standalone."
   cd $SWARMZ4_PATH/PX4-Autopilot/Tools/simulation/gz || { echo "Gazebo tools directory not found!"; exit 1; }
-  gnome-terminal --tab --title="gazebo" -- sh -c "python3 simulation-gazebo --world $WORLD; bash"
+  gnome-terminal --tab --title="gazebo" -- sh -c "cd $SWARMZ4_PATH/vrx_ws && source install/setup.bash && ros2 launch vrx_gz vrx_environment.launch.py world:=nbpark"
   sleep 10 # Wait for Gazebo to fully launch
 else
   echo "HEADLESS mode is enabled. Launching Gazebo in headless mode."
   cd $SWARMZ4_PATH/PX4-Autopilot/Tools/simulation/gz || { echo "Gazebo tools directory not found!"; exit 1; }
-  gnome-terminal --tab --title="gazebo" -- sh -c "python3 simulation-gazebo --world $WORLD --headless; bash"
+  gnome-terminal --tab --title="gazebo" -- sh -c "cd $SWARMZ4_PATH/vrx_ws && source install/setup.bash && ros2 launch vrx_gz vrx_environment.launch.py world:=nbpark"
   sleep 10 # Wait for Gazebo to fully launch
 fi
 
