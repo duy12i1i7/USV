@@ -13,7 +13,7 @@ SWARMz4 is a workspace for a drone and ship battle challenge in a Gazebo simulat
 To install the project, follow these steps:
 1. Clone the repository:
     ```bash
-    git clone https://github.com/nbaudesson/SWARMz4.git
+    git clone https://github.com/duy12i1i7/USV.git ~/SWARMz4
     ```
 2. Navigate to the project directory:
     ```bash
