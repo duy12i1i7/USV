@@ -61,7 +61,7 @@ check_custom_world_installed() {
 copy_world() {
     echo "Copying custom world file to gazebo worlds directory."
 
-    cp -r $SWARMZ4_PATH/launch_scripts/.simulation-gazebo/* "$HOME/.simulation-gazebo/"
+    cp -r $SWARMZ4_PATH/launch_scripts/.simulation-gazebo "$HOME"
 }
 
 # Main function for PX4
