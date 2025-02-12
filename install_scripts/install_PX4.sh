@@ -41,7 +41,6 @@ install_px4() {
     git clone --branch v1.15.3 --depth 1  --recurse-submodules https://github.com/PX4/PX4-Autopilot.git
     cd $SWARMZ4_PATH/PX4-Autopilot || { echo "Failed to access PX4 directory"; exit 1; }
     bash ./Tools/setup/ubuntu.sh
-    sudo apt install python3-sdformat13 ros-humble-ros-gzgarden ros-humble-xacro
     make px4_sitl
 
     echo "PX4-Autopilot installation completed."
@@ -60,10 +59,8 @@ check_custom_world_installed() {
 
 copy_world() {
     echo "Copying custom world file to gazebo worlds directory."
-    if [ ! -d "$HOME/.simulation-gazebo/worlds" ]; then
-        mkdir -p "$HOME/.simulation-gazebo/worlds"
-    fi
-    cp $SWARMZ4_PATH/launch_scripts/swarmz_world.sdf "$HOME/.simulation-gazebo/worlds/swarmz_world.sdf"
+
+    cp -r $SWARMZ4_PATH/launch_scripts/.simulation-gazebo/* "$HOME/.simulation-gazebo/"
 }
 
 # Main function for PX4

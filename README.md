@@ -13,7 +13,7 @@ SWARMz4 is a workspace for a drone and ship battle challenge in a Gazebo simulat
 To install the project, follow these steps:
 1. Clone the repository:
     ```bash
-    git clone https://github.com/duy12i1i7/USV.git ~/SWARMz4
+    git clone https://github.com/nbaudesson/SWARMz4.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -41,7 +41,7 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     - `NUM_DRONES_PER_TEAM`: Number of drones per team (default is 5).
     - `FIELD_LENGTH`: Length of the field in meters (default is 500).
     - `FIELD_WIDTH`: Width of the field in meters (default is 250).
-    - `WORLD`: Name of the Gazebo world to use (default is `swarmz_world`).
+    - `WORLD`: Name of the Gazebo world to use (default is `swarmz_world`), if you want to add warship, using `nbpark`.
 
 2. Start a game by running the game master launcher in a different terminal:
     ```bash
@@ -49,3 +49,6 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     source install/setup.bash
     ros2 launch game_master game_master.launch.py
     ```
+
+## Contact
+For any questions or feedback, please contact [nicolas.baudesson@alten.com].

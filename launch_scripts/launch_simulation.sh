@@ -46,7 +46,7 @@ cd $SWARMZ4_PATH/PX4-Autopilot || { echo "PX4-Autopilot directory not found!"; e
 
 # Parameters
 PX4_MODEL="gz_x500_lidar_front" # Change to "gz_x500" for classic x500
-PX4_SYS_AUTOSTART=4017 # Use 4001 for classic x500
+PX4_SYS_AUTOSTART=4001 # Use 4001 for classic x500, Harmonic = 4017 
 FIELD_LENGTH=5
 FIELD_WIDTH=2
 # FIELD_LENGTH=500
@@ -143,18 +143,18 @@ cd $SWARMZ4_PATH/launch_scripts || { echo "launch_scripts directory not found!";
 if [ "$HEADLESS" -ne 1 ]; then
   echo "HEADLESS mode is disabled. Launching Gazebo standalone."
   cd $SWARMZ4_PATH/PX4-Autopilot/Tools/simulation/gz || { echo "Gazebo tools directory not found!"; exit 1; }
-  gnome-terminal --tab --title="gazebo" -- sh -c "cd $SWARMZ4_PATH/vrx_ws && source install/setup.bash && ros2 launch vrx_gz vrx_environment.launch.py world:=nbpark"
+  gnome-terminal --tab --title="gazebo" -- sh -c "python3 simulation-gazebo --world $WORLD; bash"
   sleep 10 # Wait for Gazebo to fully launch
 else
   echo "HEADLESS mode is enabled. Launching Gazebo in headless mode."
   cd $SWARMZ4_PATH/PX4-Autopilot/Tools/simulation/gz || { echo "Gazebo tools directory not found!"; exit 1; }
-  gnome-terminal --tab --title="gazebo" -- sh -c "cd $SWARMZ4_PATH/vrx_ws && source install/setup.bash && ros2 launch vrx_gz vrx_environment.launch.py world:=nbpark"
+  gnome-terminal --tab --title="gazebo" -- sh -c "python3 simulation-gazebo --world $WORLD --headless; bash"
   sleep 10 # Wait for Gazebo to fully launch
 fi
 
 ### ROS 2 Setup ###
-cd $SWARMZ4_PATH/vrx_ws || { echo "ROS 2 workspace directory not found!"; exit 1; }
-source install/setup.bash
+cd $SWARMZ4_PATH/ros2_ws || { echo "ROS 2 workspace directory not found!"; exit 1; }
+
 
 # ROS 2 Bridges and Launch Files
 echo "Starting ROS 2 bridges and launch files..."
