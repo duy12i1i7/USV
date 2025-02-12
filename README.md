@@ -42,6 +42,7 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
 ### Starting the Simulation
 1. Run the launch script:
     ```bash
+    source ros2_ws/install/setup.bash
     ./launch_scripts/launch_simulation.sh [HEADLESS] [NUM_DRONES_PER_TEAM] [FIELD_LENGTH] [FIELD_WIDTH] [WORLD]
     ```
     - `HEADLESS`: Set to `1` for headless mode (default), `0` for GUI mode.
