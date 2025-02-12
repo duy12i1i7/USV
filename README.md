@@ -28,6 +28,13 @@ To install the project, follow these steps:
     cd ros2_ws
     colcon build && source install/setup.bash
     ```
+5. Download dependencies
+    ```bash
+    cd ros2_ws && source install/setup.bash
+    ros2 launch vrx_gz vrx_environment.launch.py world:=nbpark
+    ```
+    If the environment is showed on Gazebo, the download process is complete. 
+
 
 ## Usage
 To run a game, you need to start the Gazebo simulation with the appropriate number of robots. The SWARMz4 challenge makes two teams of 5 drones and 1 flagship fight each other over a 500 x 250 m field.
