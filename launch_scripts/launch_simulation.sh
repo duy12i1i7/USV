@@ -137,7 +137,7 @@ trap cleanup INT TERM
 # Launch teams
 launch_team 1 0 0 0            # Team 1 at x=0, y=0, facing forward
 launch_team 2 $FIELD_LENGTH $FIELD_WIDTH-$NUM_DRONES_PER_TEAM+1 3.14159  # Team 2 at x=FIELD_LENGTH, y=246, facing Team 1
-python3 $SWARMZ4_PATH/launch_scripts/warship.py $TOTAL_SHIPS 0 0 0 $FIELD_LENGTH $FIELD_WIDTH-$NUM_DRONES_PER_TEAM+1 3.14159
+python3 $SWARMZ4_PATH/launch_scripts/warship.py $TOTAL_SHIPS 0 0 0 $FIELD_LENGTH 250 3.14159
 
 ### Launch QGroundControl ###
 echo "Launching QGroundControl..."
