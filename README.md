@@ -43,13 +43,15 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
 1. Run the launch script:
     ```bash
     source ros2_ws/install/setup.bash
-    ./launch_scripts/launch_simulation.sh [HEADLESS] [NUM_DRONES_PER_TEAM] [FIELD_LENGTH] [FIELD_WIDTH] [WORLD]
+    ./launch_scripts/launch_simulation.sh [HEADLESS] [NUM_DRONES_PER_TEAM] [FIELD_LENGTH] [FIELD_WIDTH] [WORLD] [NUM_SHIPS_PER_TEAM]
     ```
     - `HEADLESS`: Set to `1` for headless mode (default), `0` for GUI mode.
     - `NUM_DRONES_PER_TEAM`: Number of drones per team (default is 5).
     - `FIELD_LENGTH`: Length of the field in meters (default is 500).
     - `FIELD_WIDTH`: Width of the field in meters (default is 250).
-    - `WORLD`: Name of the Gazebo world to use (default is `swarmz_world`), if you want to add warship, using `nbpark`.
+    - `WORLD`: Name of the Gazebo world to use (default is `nbpark`).
+    - `NUM_SHIPS_PER_TEAM`: Number of ships per team (default is 1).
+
 
 2. Start a game by running the game master launcher in a different terminal:
     ```bash
