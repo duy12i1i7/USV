@@ -53,10 +53,12 @@ FIELD_WIDTH=2
 # FIELD_WIDTH=250
 NUM_DRONES_PER_TEAM=2
 TOTAL_DRONES=$((NUM_DRONES_PER_TEAM * 2))
-HEADLESS=1 # headless
+NUM_SHIPS_PER_TEAM=1
+TOTAL_SHIPS=$((NUM_SHIPS_PER_TEAM * 2))
+HEADLESS=0 # headless
 # HEADLESS=0 # GUI
 # WORLD="default"
-WORLD="swarmz_world"
+WORLD="nbpark"
 
 # Arguments
 if [ -n "$1" ]; then
