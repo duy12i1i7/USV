@@ -1,4 +1,5 @@
 import sys
+import os
 
 # Kiểm tra xem người dùng đã nhập đủ tham số
 if len(sys.argv) < 7:
@@ -39,13 +40,13 @@ for i in range(1, num_ships):
     # Phân chia tàu theo 2 vị trí
     if i < num_ships // 2:
         # Các tàu đầu tiên ở vị trí (x_first, y_first)
-        x = x_first + (i * 2)  # Cách nhau 2 đơn vị theo trục x
-        y = y_first
+        y = y_first + (i * 2)  # Cách nhau 2 đơn vị theo trục x
+        x = x_first
         yaw = yaw_first
     else:
         # Các tàu tiếp theo ở vị trí (x_second, y_second)
-        x = x_second + ((i - (num_ships // 2)) * 2)  # Cách nhau 2 đơn vị theo trục x
-        y = y_second
+        y = y_second + ((i - (num_ships // 2)) * 2)  # Cách nhau 2 đơn vị theo trục x
+        x = x_second
         yaw = yaw_second
 
     z = 0  # Tọa độ z luôn bằng 0
@@ -510,8 +511,10 @@ xml_content += """
 """
 
 # Lưu kết quả vào file
-with open("~/.simulation-gazebo/worlds/nbpark.sdf", "w") as file:
+file_path = os.path.expanduser("~/.simulation-gazebo/worlds/nbpark.sdf")
+
+# Lưu kết quả vào file
+with open(file_path, "w") as file:
     file.write(xml_content)
 
-print(f"{num_ships} warships is created.")
-
+print(f"{num_ships} warships are created.")
