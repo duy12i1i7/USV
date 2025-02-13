@@ -78,7 +78,7 @@ if [ -n "$5" ]; then
   WORLD=$5
 fi
 if [ -n "$6" ]; then
-	NUM_SHIPS_PER_TEAM=$6
+  NUM_SHIPS_PER_TEAM=$6
   TOTAL_SHIPS=$((NUM_SHIPS_PER_TEAM * 2))
 fi
 # Launch PX4 Instances with improved pose handling
