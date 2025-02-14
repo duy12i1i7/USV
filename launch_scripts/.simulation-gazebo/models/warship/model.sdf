@@ -2,8 +2,102 @@
 <sdf version="1.6">
   <model name="warship">
 
-    <pose>0 0 0.5 0 0 0</pose>
+    <pose>0 0 0 0 0 0</pose>
+<plugin
+		 filename="gz-sim-joint-controller-system"
+		 name="gz::sim::systems::JointController">
+		 <joint_name>j1</joint_name>
+		 <initial_velocity>1.0</initial_velocity>
+		 <topic>gun</topic>
+	</plugin>
+<plugin
+		 filename="gz-sim-joint-controller-system"
+		 name="gz::sim::systems::JointController">
+		 <joint_name>j2</joint_name>
+		 <initial_velocity>1.0</initial_velocity>
+		 <topic>gr</topic>
+	</plugin>
+      
+      <link name="gr">
+        <pose>-1.8 0 0.1 0 0 0</pose>
 
+        <collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gr.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gr.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</visual>
+      </link>
+      <link name="trusted">
+        <pose>-1.8 0 0.1 0 0 0</pose>
+
+        <collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gr.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gr.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</visual>
+      </link>
+      <link name="gun">
+        <pose>-1.8 0 0.1 0 0 0</pose>
+
+        <collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gun.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>file://warship/meshes/gun.dae</uri>
+						<scale>0.05 0.05 0.05</scale>
+					</mesh>
+				</geometry>
+			</visual>
+      </link>
+      <joint name="fixed1" type="fixed">
+        <parent>base_link</parent>
+        <child>trusted</child>
+      </joint>
+      
+      <joint name="j2" type="revolute">
+        <parent>trusted</parent>
+        <child>gr</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>
+      <joint name="j1" type="revolute">
+        <pose>0 0 0 0 0 0</pose>
+        <parent>gr</parent>
+        <child>gun</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+        </axis>
+      </joint>
     <link name="base_link">
 
       <inertial>
