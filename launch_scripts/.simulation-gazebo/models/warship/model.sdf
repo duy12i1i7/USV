@@ -8,14 +8,12 @@
 		 name="gz::sim::systems::JointController">
 		 <joint_name>j1</joint_name>
 		 <initial_velocity>1.0</initial_velocity>
-		 <topic>gun</topic>
 	</plugin>
 <plugin
 		 filename="gz-sim-joint-controller-system"
 		 name="gz::sim::systems::JointController">
 		 <joint_name>j2</joint_name>
 		 <initial_velocity>1.0</initial_velocity>
-		 <topic>gr</topic>
 	</plugin>
       
       <link name="gr">
