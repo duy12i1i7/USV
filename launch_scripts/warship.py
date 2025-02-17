@@ -33,6 +33,26 @@ xml_content += f"""
       <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
       <uri>warship</uri>
     </include>
+    <include>
+		    <name>warship1_rocket1</name>
+		    <uri>rocket</uri>
+            <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
+    </include>
+    <include>
+		    <name>warship1_rocket2</name>
+		    <uri>rocket</uri>
+            <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
+    </include>
+    <include>
+		    <name>warship1_rocket3</name>
+		    <uri>rocket</uri>
+            <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
+    </include>
+    <include>
+		    <name>warship1_rocket4</name>
+		    <uri>rocket</uri>
+            <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
+    </include>
 """
 
 # Tạo các tàu tiếp theo, 6 tàu đầu tiên ở vị trí đầu tiên và các tàu còn lại ở vị trí thứ hai
@@ -56,6 +76,26 @@ for i in range(1, num_ships):
       <name>warship_{i + 1}</name>
       <pose>{x} {y} {z} 0 0 {yaw}</pose>
       <uri>warship</uri>
+    </include>
+        <include>
+		    <name>warship_{i + 1}_rocket1</name>
+		    <uri>rocket</uri>
+            <pose>{x} {y} {z} 0 0 {yaw}</pose>
+    </include>
+    <include>
+		    <name>warship_{i + 1}_rocket2</name>
+		    <uri>rocket</uri>
+            <pose>{x} {y} {z} 0 0 {yaw}</pose>
+    </include>
+    <include>
+		    <name>warship_{i + 1}_rocket3</name>
+		    <uri>rocket</uri>
+            <pose>{x} {y} {z} 0 0 {yaw}</pose>
+    </include>
+    <include>
+		    <name>warship_{i + 1}_rocket4</name>
+		    <uri>rocket</uri>
+            <pose>{x} {y} {z} 0 0 {yaw}</pose>
     </include>
 """
 
