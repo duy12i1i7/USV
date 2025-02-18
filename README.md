@@ -68,5 +68,16 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     With:
    - TARGET_YAW: Represents the gun muzzle's vertical rotation angle, spanning from –π/2 to π/2.
    - TARGET_PITCH: the rotation angle of the gun BASE, ranging from 0 to 2π.
-## Contact
-For any questions or feedback, please contact [nicolas.baudesson@alten.com].
+4. To control any of warship, we must utilize a bridge, specifying the topics and messages we need to send. For the left thruster:
+```bash
+ros2 run ros_gz_bridge parameter_bridge /model/{Name_of_warship}/joint/left_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double
+```
+and for the right thruster:
+```bash
+ros2 run ros_gz_bridge parameter_bridge /model/{Name_of_warship}/joint/right_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double
+```
+Finally, you can test that the bridges are working by publishing a topic to one or both of the thrusters:
+```bash
+ros2 topic pub /model/{Name_of_warship}/joint/left_engine_propeller_joint/cmd_thrust std_msgs/msg/Float64 "data: 150"
+```
+using this command you should see your boat going in circles.
