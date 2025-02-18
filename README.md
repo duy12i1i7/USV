@@ -55,13 +55,13 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
 
 2. Start a game by running the game master launcher in a different terminal:
     ```bash
-    cd SWARMZ4/ros2_ws
+    cd SWARMz4/ros2_ws
     source install/setup.bash
     ros2 launch game_master game_master.launch.py
     ```
 3. To rotate the cannon and fire the rocket, launching it in the different terminal:
     ```bash
-    cd SWARMZ4/
+    cd SWARMz4/
     source ros2_ws/install/setup.bash
     python3 launch_scripts/cannon.py [TARGET_YAW] [TARGET_PITCH]
     ```
