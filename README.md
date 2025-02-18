@@ -59,6 +59,14 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     source install/setup.bash
     ros2 launch game_master game_master.launch.py
     ```
-
+3. To rotate the cannon and fire the rocket, launching it in the different terminal:
+    ```bash
+    cd SWARMZ4/
+    source ros2_ws/install/setup.bash
+    python3 launch_scripts/cannon.py [TARGET_YAW] [TARGET_PITCH]
+    ```
+    With:
+   - TARGET_YAW: Represents the gun muzzle's vertical rotation angle, spanning from –π/2 to π/2.
+   - TARGET_PITCH: the rotation angle of the gun BASE, ranging from 0 to 2π.
 ## Contact
 For any questions or feedback, please contact [nicolas.baudesson@alten.com].
