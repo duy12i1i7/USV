@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+	<model name="rocket">
+	<inertial>
+    <pose>0 0 0 0 0 0</pose>
+    <mass>2</mass>
+    <inertia>
+      <ixx>0.5666666666666668</ixx>
+      <ixy>0</ixy>
+      <ixz>0</ixz>
+      <iyy>1.0416666666666667</iyy>
+      <iyz>0</iyz>
+      <izz>1.5416666666666667</izz>
+    </inertia>
+  </inertial>
+		<pose>0 0 0 0 0 0</pose>
+
+		<link name="link">
+			<collision name="collision">
+				<geometry>
+					<mesh>
+						<uri>file://rocket/meshes/rocket.dae</uri>
+						<scale>0.02 0.02 0.02</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<mesh>
+						<uri>file://rocket/meshes/rocket.dae</uri>
+						<scale>0.02 0.02 0.02</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+	
+
+	</model>
+</sdf>
