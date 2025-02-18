@@ -4,6 +4,7 @@ import subprocess
 import time
 import math
 
+
 def get_value_from_model(command, target_index):
     """
     Chạy lệnh gz model và trích xuất giá trị cần (target_index: 0->roll, 1->pitch, 2->yaw)
@@ -32,28 +33,28 @@ def get_value_from_model(command, target_index):
                         return None
     return None
 
-def get_pitch():
+def get_pitch(warship_id):
     # Lấy pitch từ link gun: pitch ở vị trí index 1 của RPY
-    cmd = ["gz", "model", "-m", "warship", "--link", "gun"]
+    cmd = ["gz", "model", "-m", warship_id, "--link", "gun"]
     return get_value_from_model(cmd, target_index=1)
 
-def get_yaw():
+def get_yaw(warship_id):
     # Lấy yaw từ link gr: yaw ở vị trí index 2 của RPY
-    cmd = ["gz", "model", "-m", "warship", "--link", "trusted"]
+    cmd = ["gz", "model", "-m", warship_id, "--link", "trusted"]
     return get_value_from_model(cmd, target_index=2)
 
-def publish_command(topic, data_value):
+def publish_command(model, j, data_value):
     """
     Gửi lệnh publish đến topic đã cho với giá trị data_value.
     """
-    cmd = ["gz", "topic", "-t", topic, "-m", "gz.msgs.Double", "-p", f"data: {data_value}"]
+    cmd = ["gz", "topic", "-t", "/model/"+ model +"/joint/"+ j + "/cmd_thrust", "-m", "gz.msgs.Double", "-p", f"data: {data_value}"]
     print(f"Thực thi lệnh: {' '.join(cmd)}")
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError:
         print(f"Lỗi khi gửi lệnh cho topic {topic}")
 
-def adjust_axis(get_current, topic, target_value, axis_name, tolerance=0.5):
+def adjust_axis(get_current, model, j, target_value, axis_name, tolerance=0.5):
     """
     Điều chỉnh giá trị của một trục cho đến khi đạt được giá trị mục tiêu.
     - get_current: hàm lấy giá trị hiện tại (ví dụ get_yaw, get_pitch)
@@ -74,7 +75,7 @@ def adjust_axis(get_current, topic, target_value, axis_name, tolerance=0.5):
 
         if abs(diff) < tolerance:
             # Nếu đã đạt mục tiêu, gửi lệnh dừng (data = 0) và thoát vòng lặp
-            publish_command(topic, 0.0)
+            publish_command(model, j, 0.0)
             print(f"{axis_name} đã đạt mục tiêu.")
             break
         else:
@@ -82,26 +83,59 @@ def adjust_axis(get_current, topic, target_value, axis_name, tolerance=0.5):
             publish_command(topic, data)
 
 
+def yaw_pitch_to_vector(yaw, pitch):
+    # Công thức chuyển đổi cơ bản từ yaw, pitch sang vector đơn vị
+    vx = math.cos(pitch) * math.cos(yaw)
+    vy = math.cos(pitch) * math.sin(yaw)
+    vz = math.sin(pitch)
+    return [vx, vy, vz]
+
+def fire(model, yaw, pitch):
+    # Giả sử bạn đã định nghĩa hàm yaw_pitch_to_vector trả về vector hướng dưới dạng [vx, vy, vz]
+    vector = yaw_pitch_to_vector(yaw, pitch)
+    x = vector[0] * 1000
+    y = vector[1] * 1000
+    z = vector[2] * 1000
+
+    # Tạo chuỗi yêu cầu dưới dạng:
+    # name: "rocket", position: {x: 0.0, y: 0.0, z: 10.0}
+    req_str = f'name: "{model}", position: {{x: {x}, y: {y}, z: {z}}}'
+    
+    cmd = [
+        "gz", "service", "-s", "/world/default/set_pose",
+        "--reqtype", "gz.msgs.Pose",
+        "--reptype", "gz.msgs.Boolean",
+        "--timeout", "300",
+        "--req", req_str
+    ]
+    
+    print(f"Thực thi lệnh: {' '.join(cmd)}")
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as e:
+        print("Lỗi khi thực hiện lệnh:", e)
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python3 rot.py [target_yaw] [target_pitch]")
+    if len(sys.argv) != 4:
+        print("Usage: python3 rot.py [warship_name] [target_yaw] [target_pitch]")
         sys.exit(1)
     try:
-        target_yaw = float(sys.argv[1])
-        target_pitch = float(sys.argv[2])
+    	target_warship = string(sys.argv[1])
+        target_yaw = float(sys.argv[2])
+        target_pitch = float(sys.argv[3])
     except ValueError:
         print("Vui lòng nhập 2 giá trị số cho target_yaw và target_pitch.")
         sys.exit(1)
 
 	
     print(f"Target: yaw = {target_yaw}, pitch = {target_pitch}")
-    publish_command("/gr",0)
-    publish_command("/gun",0)
+    publish_command(target_warship,"/j2",0)
+    publish_command(target_warship,"/j1",0)
     # Điều chỉnh yaw (trục gr) trước
         # Sau khi yaw đạt mục tiêu, điều chỉnh pitch (trục gun)
-    adjust_axis(get_pitch, "/gun", target_pitch, "Pitch")
-    adjust_axis(get_yaw, "/gr", target_yaw, "Yaw")
+    adjust_axis(get_pitch(target_warship), target_warship, "/j1", target_pitch, "Pitch")
+    adjust_axis(get_yaw(target_warship), target_warship, "/j2", target_yaw, "Yaw")
+	fire(target_warship, target_yaw, target_pitch)
 
 
 
