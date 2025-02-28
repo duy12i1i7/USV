@@ -63,7 +63,7 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     ```bash
     cd SWARMz4/
     source ros2_ws/install/setup.bash
-    python3 launch_scripts/cannon.py [TARGET_YAW] [TARGET_PITCH]
+    python3 launch_scripts/cannon.py [TARGET_SHIP] [TARGET_YAW] [TARGET_PITCH]
     ```
     With:
    - TARGET_YAW: Represents the gun muzzle's vertical rotation angle, spanning from –π/2 to π/2.
