@@ -121,7 +121,15 @@ launch_team() {
         launch_px4_instance "$instance_id" "$start_pos_x" "$y_pos" "$yaw"
     done
 }
-
+# Function for init topic that hand out warship
+warship_handle() {
+    for i in $(seq 1 $TOTAL_SHIPS); do
+        # Chạy lệnh cho left engine
+        ros2 run ros_gz_bridge parameter_bridge /model/warship_${i}/joint/left_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double &
+        # Chạy lệnh cho right engine
+        ros2 run ros_gz_bridge parameter_bridge /model/warship_${i}/joint/right_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double &
+    done
+}
 
 ### Main Execution ###
 
@@ -133,12 +141,33 @@ cleanup() {
     # exit 0
 }
 trap cleanup INT TERM
-
+# Arguments
+if [ -n "$1" ]; then
+  HEADLESS=$1
+fi
+if [ -n "$2" ]; then
+  NUM_DRONES_PER_TEAM=$2
+  TOTAL_DRONES=$((NUM_DRONES_PER_TEAM * 2))
+fi
+if [ -n "$3" ]; then
+  FIELD_LENGTH=$3
+fi
+if [ -n "$4" ]; then
+  FIELD_WIDTH=$4
+fi
+if [ -n "$5" ]; then
+  WORLD=$5
+fi
+if [ -n "$6" ]; then
+  NUM_SHIPS_PER_TEAM=$6
+  TOTAL_SHIPS=$((NUM_SHIPS_PER_TEAM * 2))
+fi
 # Launch teams
 launch_team 1 0 0 0            # Team 1 at x=0, y=0, facing forward
 launch_team 2 $FIELD_LENGTH $FIELD_WIDTH-$NUM_DRONES_PER_TEAM+1 3.14159  # Team 2 at x=FIELD_LENGTH, y=246, facing Team 1
-python3 $SWARMZ4_PATH/launch_scripts/warship.py $TOTAL_SHIPS 0 0 0 $FIELD_LENGTH 250 3.14159
-
+python3 $SWARMZ4_PATH/launch_scripts/warship.py $TOTAL_SHIPS 0 0 0 $FIELD_LENGTH $(( FIELD_WIDTH - NUM_DRONES_PER_TEAM + 1 )) 3.14159
+gnome-terminal --tab --title="WarshipController" -- sh -c "source launch_simulation.sh $HEADLESS $NUM_DRONES_PER_TEAM $FIELD_LENGTH $FIELD_WIDTH $WORLD $NUM_SHIPS_PER_TEAM; warship_handle; exec bash"
+wait 10
 ### Launch QGroundControl ###
 echo "Launching QGroundControl..."
 cd $SWARMZ4_PATH/launch_scripts || { echo "launch_scripts directory not found!"; exit 1; }
