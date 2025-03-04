@@ -48,7 +48,7 @@ This ensures the warships are placed appropriately in the simulation, simplifyin
 
 ## About game_master link
 Faire marcher le canon du bateau avec le missile server.
-Dans ros2_ws/src/swarmz_pkgs/game_master/utils/gazebo_subscriber.py, C\'est là que je récupère les positions des drones directement dans Gazebo (et pas avec px4) pour calculer leurs distances et alignements pour faire fonctionner missile_sever, kamikaze_server, detections, communications. Je vais chercher le modèles des drones en faisant "px4_prefix+drone_id". Je voudrais faire la même chose avec le canon du bateau "flag_ship_prefix+flag_ship_id", comme ça on pourra directement réutiliser missile_server, detections et communications pour le bateau.
+Dans ros2_ws/src/swarmz_pkgs/game_master/utils/gazebo_subscriber.py, C'est là que je récupère les positions des drones directement dans Gazebo (et pas avec px4) pour calculer leurs distances et alignements pour faire fonctionner missile_sever, kamikaze_server, detections, communications. Je vais chercher le modèles des drones en faisant "px4_prefix+drone_id". Je voudrais faire la même chose avec le canon du bateau "flag_ship_prefix+flag_ship_id", comme ça on pourra directement réutiliser missile_server, detections et communications pour le bateau.
 
 ### Integrating the Warship with Game Master Link
 
@@ -62,7 +62,7 @@ Also, feel free to use my missile firing system if you’d like — I’ve alrea
 ## About clean code
 
 Est-ce que tu pourrais mettre tous les codes relatifs au bateau dans ros2_ws/src/swarmz_pkgs/flag_ship ? (ou refais toi un nouveau package)
-Entre tes codes et ceux de vrx, c\'est assez difficle de savoir lesquels il faut modifier.
+Entre tes codes et ceux de vrx, c'est assez difficle de savoir lesquels il faut modifier.
 ### Answers
 Alright, I’ve moved the folder as you requested.
 
