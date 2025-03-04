@@ -64,7 +64,7 @@ def publish_command(model, j, data_value):
     """
     Gửi lệnh publish đến topic đã cho với giá trị data_value.
     """
-    topic = f"/model/{model}/joint/{j}/cmd_thrust"
+    topic = f"/model/{model}/joint/{j}/cmd_vel"
     # Chuỗi payload dùng để thực thi (không có dấu nháy đơn)
     payload_for_execution = f"data: {data_value}"
     # Chuỗi payload dùng để in ra (có dấu nháy đơn như mong muốn)
