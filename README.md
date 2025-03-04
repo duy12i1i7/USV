@@ -63,23 +63,16 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
     ```bash
     cd SWARMz4/
     source ros2_ws/install/setup.bash
-    python3 launch_scripts/cannon.py [TARGET_SHIP] [TARGET_YAW] [TARGET_PITCH]
+    python3 launch_scripts/cannon.py [TARGET_SHIP] [TARGET_YAW] [TARGET_PITCH] [MAX_SPEED_ROCKET] 
     ```
     With:
    - TARGET_YAW: Represents the gun muzzle's vertical rotation angle, spanning from –π/2 to π/2.
    - TARGET_PITCH: the rotation angle of the gun BASE, ranging from 0 to 2π.
+   - MAX_SPEED_ROCKET: is the speed of the rocket on warship
 
 [![Rotate and Fire](https://img.youtube.com/vi/_z1kW_oepP8/0.jpg)](https://www.youtube.com/watch?v=_z1kW_oepP8)  
 
-4. To control any of warship, we must utilize a bridge, specifying the topics and messages we need to send. For the left thruster:
-```bash
-ros2 run ros_gz_bridge parameter_bridge /model/{Name_of_warship}/joint/left_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double
-```
-and for the right thruster:
-```bash
-ros2 run ros_gz_bridge parameter_bridge /model/{Name_of_warship}/joint/right_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double
-```
-Finally, you can test that the bridges are working by publishing a topic to one or both of the thrusters:
+4. To control any of warship, you can test engines by publishing a topic to one or both of the thrusters:
 ```bash
 ros2 topic pub /model/{Name_of_warship}/joint/left_engine_propeller_joint/cmd_thrust std_msgs/msg/Float64 "data: 150"
 ```
@@ -87,3 +80,5 @@ using this command you should see your boat going in circles.
 
 
 [![Control the warship](https://img.youtube.com/vi/Spu8wt_rsx4/0.jpg)](https://www.youtube.com/watch?v=Spu8wt_rsx4)
+
+For more details, read the `Answers.md`
