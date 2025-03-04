@@ -143,7 +143,7 @@ def fire(model, yaw, pitch, maxSpd):
 
 def main():
     if len(sys.argv) != 5:
-        print("Usage: python3 rot.py [warship_name] [target_yaw] [target_pitch] [max_speed_rocket]")
+        print("Usage: python3 cannon.py [warship_name] [target_yaw] [target_pitch] [max_speed_rocket]")
         sys.exit(1)
     try:
         target_warship = sys.argv[1]
