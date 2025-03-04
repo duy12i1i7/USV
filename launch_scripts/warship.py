@@ -29,33 +29,33 @@ xml_content = """<?xml version="1.0" ?>
 # Tạo tàu đầu tiên tại vị trí (x_first, y_first, z_first)
 xml_content += f"""    
     <include>
-      <name>warship_1</name>
+      <name>flag_ship_1</name>
       <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
       <uri>warship</uri>
     </include>
     <include>
-		    <name>warship1_rocket1</name>
+		    <name>flag_ship1_rocket1</name>
 		    <uri>rocket</uri>
             <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
     </include>
     <include>
-		    <name>warship1_rocket2</name>
+		    <name>flag_ship1_rocket2</name>
 		    <uri>rocket</uri>
             <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
     </include>
     <include>
-		    <name>warship1_rocket3</name>
+		    <name>flag_ship1_rocket3</name>
 		    <uri>rocket</uri>
             <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
     </include>
     <include>
-		    <name>warship1_rocket4</name>
+		    <name>flag_ship1_rocket4</name>
 		    <uri>rocket</uri>
             <pose>{x_first} {y_first} {z_first} 0 0 {yaw_first}</pose>
     </include>
 """
 
-# Tạo các tàu tiếp theo, 6 tàu đầu tiên ở vị trí đầu tiên và các tàu còn lại ở vị trí thứ hai
+# Tạo các tàu tiếp theo, x tàu đầu tiên ở vị trí đầu tiên và các tàu còn lại ở vị trí thứ hai
 for i in range(1, num_ships):
     # Phân chia tàu theo 2 vị trí
     if i < num_ships // 2:
@@ -73,27 +73,27 @@ for i in range(1, num_ships):
 
     xml_content += f"""    
     <include>
-      <name>warship_{i + 1}</name>
+      <name>flag_ship_{i + 1}</name>
       <pose>{x} {y} {z} 0 0 {yaw}</pose>
       <uri>warship</uri>
     </include>
         <include>
-		    <name>warship_{i + 1}_rocket1</name>
+		    <name>flag_ship{i + 1}_rocket1</name>
 		    <uri>rocket</uri>
             <pose>{x} {y} {z} 0 0 {yaw}</pose>
     </include>
     <include>
-		    <name>warship_{i + 1}_rocket2</name>
+		    <name>flag_ship{i + 1}_rocket2</name>
 		    <uri>rocket</uri>
             <pose>{x} {y} {z} 0 0 {yaw}</pose>
     </include>
     <include>
-		    <name>warship_{i + 1}_rocket3</name>
+		    <name>flag_ship{i + 1}_rocket3</name>
 		    <uri>rocket</uri>
             <pose>{x} {y} {z} 0 0 {yaw}</pose>
     </include>
     <include>
-		    <name>warship_{i + 1}_rocket4</name>
+		    <name>flag_ship{i + 1}_rocket4</name>
 		    <uri>rocket</uri>
             <pose>{x} {y} {z} 0 0 {yaw}</pose>
     </include>
