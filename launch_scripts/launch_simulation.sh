@@ -141,27 +141,7 @@ cleanup() {
     # exit 0
 }
 trap cleanup INT TERM
-# Arguments
-if [ -n "$1" ]; then
-  HEADLESS=$1
-fi
-if [ -n "$2" ]; then
-  NUM_DRONES_PER_TEAM=$2
-  TOTAL_DRONES=$((NUM_DRONES_PER_TEAM * 2))
-fi
-if [ -n "$3" ]; then
-  FIELD_LENGTH=$3
-fi
-if [ -n "$4" ]; then
-  FIELD_WIDTH=$4
-fi
-if [ -n "$5" ]; then
-  WORLD=$5
-fi
-if [ -n "$6" ]; then
-  NUM_SHIPS_PER_TEAM=$6
-  TOTAL_SHIPS=$((NUM_SHIPS_PER_TEAM * 2))
-fi
+
 # Launch teams
 launch_team 1 0 0 0            # Team 1 at x=0, y=0, facing forward
 launch_team 2 $FIELD_LENGTH $FIELD_WIDTH-$NUM_DRONES_PER_TEAM+1 3.14159  # Team 2 at x=FIELD_LENGTH, y=246, facing Team 1
