@@ -69,6 +69,12 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
    - TARGET_YAW: Represents the gun muzzle's vertical rotation angle, spanning from –π/2 to π/2.
    - TARGET_PITCH: the rotation angle of the gun BASE, ranging from 0 to 2π.
    - MAX_SPEED_ROCKET: is the speed of the rocket on warship
+  
+   Or use this topic:
+   ```bash
+   ros2 topic pub /fire warship_control/FireCommand "{target_ship: 'enemy_ship', target_yaw: 1.57, target_pitch: 0.5, max_speed_rocket: 30.0}"
+
+   ```
 
 [![Rotate and Fire](https://img.youtube.com/vi/_z1kW_oepP8/0.jpg)](https://www.youtube.com/watch?v=_z1kW_oepP8)  
 
