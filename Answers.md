@@ -30,6 +30,12 @@ In addition to the ship control launcher, I’ve also made significant improveme
 This parameter controls not only how far the projectile can travel, but also its speed. In other words, the projectile’s flight characteristics now depend directly on this configurable speed limit.
 
 For a detailed breakdown of these changes, you can refer to the latest commits in the `cannon.py` file.
+
+To using it like a topic, we define a node named `warship_control`, which public the topic to control the gun and the rocket on each warship, here is how can we use this topic:
+```bash
+ros2 topic pub /fire warship_control/FireCommand "{source: 'enemy_ship', target_yaw: 1.57, target_pitch: 0.5, max_speed_rocket: 30.0}"
+```
+For more details, please check the code and how can we use this on `README.md`
 ## About Boat spawn
 Est-ce qu'il est possible de modifier l'endroit du spawn des bateaux ?
 Actuellement lieu du spawn des équipe de drone est fait aléatoirement dans le "launch_game.sh" script. Est-ce que l'on pourrait intégrer le spawning du bateau à ce script ? Sinon ce script génère ros2_ws/src/px4_pkgs/offboard_control_py/config/spawn_position.yaml avec les position des drones généré par le script. Tu peux aussi te servir de ça comme information sur où placer les bateaux pour chaque équipe.
@@ -64,7 +70,7 @@ Also, feel free to use my missile firing system if you’d like — I’ve alrea
 Est-ce que tu pourrais mettre tous les codes relatifs au bateau dans ros2_ws/src/swarmz_pkgs/flag_ship ? (ou refais toi un nouveau package)
 Entre tes codes et ceux de vrx, c'est assez difficle de savoir lesquels il faut modifier.
 ### Answers
-Alright, I’ve moved the folder as you requested.
+I cann't find some ways to move the `vrx` folder into the `flag_ship` folder. The reason is that the `vrx` folder is contains various package using for bulding the environment and the ship model, this cannot be included on another packages like `flag_ship`
 
 ## About vrx & install
 Can you make an individual script for the install of vrx ?
