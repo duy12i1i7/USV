@@ -149,7 +149,7 @@ def main():
         target_warship = sys.argv[1]
         target_yaw = float(sys.argv[2])
         target_pitch = float(sys.argv[3])
-	maxSpd = float(sys.argv[4])
+        maxSpd = float(sys.argv[4])
     except ValueError:
         print("Vui lòng nhập 4 giá trị số cho"+ValueError)
         sys.exit(1)
