@@ -129,6 +129,7 @@ warship_handle() {
         # Chạy lệnh cho right engine
         ros2 run ros_gz_bridge parameter_bridge /model/warship_${i}/joint/right_engine_propeller_joint/cmd_thrust@std_msgs/msg/Float64]gz.msgs.Double &
     done
+    ros2 run warship_control fire_listener &
 }
 
 ### Main Execution ###
