@@ -403,7 +403,7 @@ xml_content += """
 
     <include>
       <pose>0 0 0 0 0 0</pose>
-      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/nathan_benderson_park</uri>
+      <uri>env</uri>
     </include>
 
     <include>
