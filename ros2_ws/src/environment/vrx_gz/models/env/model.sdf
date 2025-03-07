@@ -2,7 +2,8 @@
 <sdf version="1.6">
     <model name="nb_park">
         <static>true</static>
-
+        <link name="base_link">
+        </link>
         <link name="heightmap">
             <collision name="heightmap_collision">
                 <geometry>
