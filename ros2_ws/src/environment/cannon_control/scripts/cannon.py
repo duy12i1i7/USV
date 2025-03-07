@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 import subprocess
 import time
@@ -115,31 +116,7 @@ def yaw_pitch_to_vector(yaw, pitch):
     vz = math.sin(pitch)
     return [vx, vy, vz]
 
-def fire(model, yaw, pitch, maxSpd):
-    # Giả sử bạn đã định nghĩa hàm yaw_pitch_to_vector trả về vector hướng dưới dạng [vx, vy, vz]
-    vector = yaw_pitch_to_vector(yaw, pitch)
-    
-    # Di chuyển theo maxSpd bước: bước 1 sẽ là vector[0]*1, vector[0]*1, vector[0]*1; bước cuối cùng là vector nhân maxSpd.
-    for i in range(1, maxSpd):
-        x = vector[0] * i * 0.1
-        y = vector[1] * i * 0.1
-        z = vector[2] * i * 0.1
-        
-        # Tạo chuỗi yêu cầu với vị trí cập nhật
-        req_str = f'name: "{model}", position: {{x: {x}, y: {y}, z: {z}}}'
-        cmd = [
-            "gz", "service", "-s", "/world/default/set_pose",
-            "--reqtype", "gz.msgs.Pose",
-            "--reptype", "gz.msgs.Boolean",
-            "--timeout", "300",
-            "--req", req_str
-        ]
-        
-        print(f"Thực thi lệnh bước {i}: {' '.join(cmd)}")
-        try:
-            subprocess.run(cmd, check=True)
-        except subprocess.CalledProcessError as e:
-            print("Lỗi khi thực hiện lệnh bước", i, ":", e)
+
 
 def main():
     if len(sys.argv) != 5:
@@ -162,7 +139,7 @@ def main():
         # Sau khi yaw đạt mục tiêu, điều chỉnh pitch (trục gun)
     adjust_axis(get_pitch, target_warship, "j1", target_pitch, "Pitch")
     adjust_axis(get_yaw, target_warship, "j2", target_yaw, "Yaw")
-    fire(transform_warship(target_warship), target_yaw, target_pitch, maxSpd)
+
 
 
 
