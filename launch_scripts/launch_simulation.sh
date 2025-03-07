@@ -147,7 +147,7 @@ trap cleanup INT TERM
 launch_team 1 0 0 0            # Team 1 at x=0, y=0, facing forward
 launch_team 2 $FIELD_LENGTH $FIELD_WIDTH-$NUM_DRONES_PER_TEAM+1 3.14159  # Team 2 at x=FIELD_LENGTH, y=246, facing Team 1
 python3 $SWARMZ4_PATH/launch_scripts/warship.py $TOTAL_SHIPS 0 0 0 $FIELD_LENGTH $(( FIELD_WIDTH - NUM_DRONES_PER_TEAM + 1 )) 3.14159
-gnome-terminal --tab --title="WarshipController" -- sh -c "source launch_simulation.sh $HEADLESS $NUM_DRONES_PER_TEAM $FIELD_LENGTH $FIELD_WIDTH $WORLD $NUM_SHIPS_PER_TEAM; warship_handle; exec bash"
+gnome-terminal --tab --title="WarshipController" -- sh -c "source cd $SWARMZ4_PATH/launch_scripts/launch_simulation.sh $HEADLESS $NUM_DRONES_PER_TEAM $FIELD_LENGTH $FIELD_WIDTH $WORLD $NUM_SHIPS_PER_TEAM; warship_handle; exec bash"
 wait 10
 ### Launch QGroundControl ###
 echo "Launching QGroundControl..."
