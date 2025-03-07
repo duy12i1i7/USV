@@ -71,7 +71,7 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
    - TARGET_PITCH: the rotation angle of the gun BASE, ranging from 0 to 2π.
    - MAX_SPEED_ROCKET: is the speed of the rocket on warship
   
-   Or use this topic:
+   Or use this topic(maybe get some struggle with this):
    ```bash
    source ros2_ws/install/setup.bash
    ros2 topic pub /fire cannon_control/msg/FireCommand "{source: 'flag_ship_1', target_yaw: 1.57, target_pitch: 0.5, max_speed_rocket: 30.0}"
