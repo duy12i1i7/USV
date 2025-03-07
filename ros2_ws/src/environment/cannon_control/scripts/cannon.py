@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
 import sys
 import subprocess
 import time
@@ -122,6 +121,12 @@ def main():
     if len(sys.argv) != 5:
         print("Usage: python3 cannon.py [warship_name] [target_yaw] [target_pitch] [max_speed_rocket]")
         sys.exit(1)
+    else if (float(sys.argv[2]) > 1.5 or float(sys.argv[2]) < -1.57):
+    	print("out of yaw degree")
+    	sys.exit(1)
+    else if (float(sys.argv[3]) < 0 or float(sys.argv[3]) > 3.14):
+    	print("out of pitch degree")
+	sys.exit(1)
     try:
         target_warship = sys.argv[1]
         target_yaw = float(sys.argv[2])
