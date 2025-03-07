@@ -73,8 +73,8 @@ To run a game, you need to start the Gazebo simulation with the appropriate numb
   
    Or use this topic:
    ```bash
-   ros2 topic pub /fire warship_control/FireCommand "{source: 'enemy_ship', target_yaw: 1.57, target_pitch: 0.5, max_speed_rocket: 30.0}"
-
+   source ros2_ws/install/setup.bash
+   ros2 topic pub /fire cannon_control/msg/FireCommand "{source: 'flag_ship_1', target_yaw: 1.57, target_pitch: 0.5, max_speed_rocket: 30.0}"
    ```
 
 [![Rotate and Fire](https://img.youtube.com/vi/_z1kW_oepP8/0.jpg)](https://www.youtube.com/watch?v=_z1kW_oepP8)  
